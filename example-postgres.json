@@ -1,0 +1,16 @@
+{
+	"Connection": {
+		"Host": "172.17.42.1",
+		"Data": "database",
+		"User": "username",
+		"Pass": "password"
+	},
+	"Tables": [{
+		"Table": "sessions",
+		"Columns": ["session text", "timestamp timestamp"],
+		"Checks": ["session != NULL"],
+		"Indexes": ["session"],
+		"Uniques": ["session"],
+		"Defaults": ["timestamp now()"]
+	}]
+}
