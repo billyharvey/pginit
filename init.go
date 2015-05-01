@@ -87,7 +87,7 @@ func Init(postgres_json string) *sqlx.DB {
 			if err != nil {
 				panic(err)
 			}
-			db2, err := sqlx.Connect("postgres",
+			db, err := sqlx.Connect("postgres",
 				"host="+pg.Connection.Host+
 					" port="+pg.Connection.Port+
 					" user=postgres"+
@@ -97,15 +97,15 @@ func Init(postgres_json string) *sqlx.DB {
 			if err != nil {
 				panic(err)
 			}
-			_, err = db2.Exec("CREATE USER " + pg.Connection.User + " PASSWORD '" + pg.Connection.Pass + "'")
+			_, err = db.Exec("CREATE USER " + pg.Connection.User + " PASSWORD '" + pg.Connection.Pass + "'")
 			if err != nil {
 				panic(err)
 			}
-			_, err = db2.Exec("CREATE DATABASE " + pg.Connection.Data + " ENCODING 'UTF8' TEMPLATE template0")
+			_, err = db.Exec("CREATE DATABASE " + pg.Connection.Data + " ENCODING 'UTF8' TEMPLATE template0")
 			if err != nil {
 				panic(err)
 			}
-			_, err = db2.Exec("GRANT ALL ON DATABASE " + pg.Connection.Data + " TO " + pg.Connection.User)
+			_, err = db.Exec("GRANT ALL ON DATABASE " + pg.Connection.Data + " TO " + pg.Connection.User)
 			if err != nil {
 				panic(err)
 			}
